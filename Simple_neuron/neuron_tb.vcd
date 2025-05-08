@@ -1,0 +1,263 @@
+$date
+	Thu May 08 12:42:49 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module neuron_tb $end
+$var wire 23 ! out_data [22:0] $end
+$var reg 1 " clk $end
+$var reg 12 # in_data [11:0] $end
+$var reg 1 $ rst $end
+$scope module uut $end
+$var wire 23 % add_result [22:0] $end
+$var wire 1 & clk $end
+$var wire 12 ' in_data [11:0] $end
+$var wire 23 ( out [22:0] $end
+$var wire 23 ) result [22:0] $end
+$var wire 1 * rst $end
+$var reg 1 + accumulate_flag $end
+$var reg 4 , counter [3:0] $end
+$var reg 23 - num1 [22:0] $end
+$var reg 23 . num2 [22:0] $end
+$var reg 23 / out_data [22:0] $end
+$var reg 23 0 sum [22:0] $end
+$scope module mut $end
+$var wire 9 1 frac1 [8:0] $end
+$var wire 2 2 frac2 [1:0] $end
+$var wire 2 3 int1 [1:0] $end
+$var wire 9 4 int2 [8:0] $end
+$var wire 12 5 num1 [11:0] $end
+$var wire 12 6 num2 [11:0] $end
+$var wire 22 7 product [21:0] $end
+$var wire 23 8 result [22:0] $end
+$var wire 1 9 result_sign $end
+$var wire 1 : sign1 $end
+$var wire 1 ; sign2 $end
+$var wire 11 < unsigned_val1 [10:0] $end
+$var wire 11 = unsigned_val2 [10:0] $end
+$upscope $end
+$scope module sut $end
+$var wire 4 > counter [3:0] $end
+$var wire 23 ? num1 [22:0] $end
+$var wire 23 @ num2 [22:0] $end
+$var wire 23 A result [22:0] $end
+$var reg 1 B sign $end
+$var reg 22 C signed_result [21:0] $end
+$upscope $end
+$scope module rut $end
+$var wire 23 D data_in [22:0] $end
+$var wire 23 E data_out [22:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 E
+b0 D
+b0 C
+0B
+b0 A
+b0 @
+b0 ?
+b0 >
+b1 =
+b0 <
+0;
+0:
+09
+b0 8
+b0 7
+b1 6
+b0 5
+b0 4
+b0 3
+b1 2
+b0 1
+b0 0
+b0 /
+b0 .
+b0 -
+b0 ,
+0+
+1*
+b0 )
+b0 (
+b0 '
+0&
+b0 %
+1$
+b0 #
+0"
+b0 !
+$end
+#5000
+1"
+1&
+#10000
+0"
+0&
+#15000
+1"
+1&
+#20000
+b1011100 )
+b1011100 8
+b1011100 7
+b1011100 <
+b1011100 1
+0"
+0&
+b1011100 #
+b1011100 '
+b1011100 5
+0$
+0*
+#25000
+b111000101000 C
+b111000101000 %
+b111000101000 A
+b1 ,
+b1 >
+1+
+b1011100 .
+b1011100 @
+b110111001100 -
+b110111001100 ?
+1"
+1&
+#30000
+b11100100 )
+b11100100 8
+b11100100 7
+b11100100 <
+b11100100 1
+0"
+0&
+b11100100 #
+b11100100 '
+b11100100 5
+#35000
+b111100001100 C
+b111100001100 %
+b111100001100 A
+b10 ,
+b10 >
+b11100100 .
+b11100100 @
+b111000101000 -
+b111000101000 ?
+1"
+1&
+#40000
+b111000000 )
+b111000000 8
+b111000000 7
+b111000000 <
+b111000000 1
+0"
+0&
+b111000000 #
+b111000000 '
+b111000000 5
+#45000
+x9
+x;
+bx 4
+bx )
+bx 8
+bx 7
+bx =
+bx 2
+b1000011001100 C
+b1000011001100 %
+b1000011001100 A
+b11 ,
+bx 6
+b11 >
+b111000000 .
+b111000000 @
+b111100001100 -
+b111100001100 ?
+1"
+1&
+#50000
+b1011100 <
+b1011100 1
+0"
+0&
+b1011100 #
+b1011100 '
+b1011100 5
+#55000
+b1000011001100 (
+b1000011001100 E
+b100 ,
+b100 >
+b1000011001100 0
+b1000011001100 D
+1"
+1&
+#60000
+0"
+0&
+#65000
+b1000011001100 /
+b1000011001100 !
+1"
+1&
+#70000
+0"
+0&
+#75000
+1"
+1&
+#80000
+0"
+0&
+#85000
+1"
+1&
+#90000
+0"
+0&
+#95000
+1"
+1&
+#100000
+0"
+0&
+#105000
+1"
+1&
+#110000
+0"
+0&
+#115000
+1"
+1&
+#120000
+0"
+0&
+#125000
+1"
+1&
+#130000
+0"
+0&
+#135000
+1"
+1&
+#140000
+0"
+0&
+#145000
+1"
+1&
+#150000
+0"
+0&
