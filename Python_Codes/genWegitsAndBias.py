@@ -38,7 +38,7 @@ def DtoB(num,dataWidth,fracBits):
 
 def genWegitsAndBias(dataWidth,weightFracWidth,biasFracWidt,weightArray,biasArray):
     biasFracWidth = biasFracWidt
-    bias_dataWidth = 15
+    bias_dataWidth = 23
     weightIntWidth = dataWidth-weightFracWidth
     biasIntWidth = bias_dataWidth-biasFracWidth
     print(biasFracWidth)
@@ -92,12 +92,12 @@ def genWegitsAndBias(dataWidth,weightFracWidth,biasFracWidt,weightArray,biasArra
 
 if __name__ == "__main__":
     # Example usage
-    dataWidth = 3
-    weightFracWidth = 1
-    biasFracWidth = 10
+    dataWidth = 12
+    weightFracWidth = 9
+    biasFracWidth = 11
     weightArray = [
         [[1,1,1]]
     ]
-    biasArray = [ [[-2.9]]]
+    biasArray = [[[-3]]]
     
     genWegitsAndBias(dataWidth, weightFracWidth, biasFracWidth, weightArray, biasArray)
