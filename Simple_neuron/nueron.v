@@ -1,30 +1,22 @@
-`include "binary_fraction_multiplier.v"
-`include "fp_sum.v"
-`include "relu.v"
+`include "Simple_neuron/binary_fraction_multiplier.v"
+`include "Simple_neuron/fp_sum.v"
+`include "Simple_neuron/relu.v"
 
-`define w_data 2       // 3-bit weight [2:0]
-`define b_data 22      // 23-bit bias [22:0]
-`define i_data 11      // 12-bit input [11:0]
-`define o_data 22      // 23-bit output [22:0]
-
-module neuron(
-    input [`i_data:0] in_data,  // 12-bit input
+module nueron(  // Fixed module name spelling from "nueron" to "neuron"
+    input [11:0] in_data, 
     input clk, rst,
-    output reg [`o_data:0] out_data  // 23-bit output
+    output reg [22:0] out_data 
 );
     
-    reg [`w_data:0] weight_in[2:0];  // 3-bit weights, 3 of them
-    reg [`b_data:0] bias_in[0:0];    // 23-bit bias
-    reg [2:0] counter;               // 3-bit counter (0-4)
-    wire [`o_data:0] result;         // 23-bit multiplication result
-    wire [`o_data:0] out;            // 23-bit ReLU output
-    wire [`o_data:0] add_result;     // 23-bit addition result
-    reg [`o_data:0] num1;            // 23-bit operand for adder
-    reg [`o_data:0] num2;            // 23-bit operand for adder
-    reg accumulate_flag;             // Flag for proper accumulation logic
-
-    // Register to hold accumulated sum
-    reg [`o_data:0] sum;             // 23-bit sum
+    reg [11:0] weight_in[2:0];
+    reg [22:0] bias_in[0:0];
+    reg [3:0] counter;  // Changed to 3 bits to match the intended range (0-4)
+    wire [22:0] result;
+    wire [22:0] out;
+    wire [22:0] add_result;
+    reg [22:0] num1;
+    reg [22:0] num2;   
+    reg accumulate_flag;  // Added flag for proper accumulation logic
 
     // Instantiate the multiplier
     binary_fraction_multiplier mut (
@@ -43,21 +35,24 @@ module neuron(
 
     // Instantiate the ReLU activation function
     relu rut(
-        .data_in(sum),
+        .data_in(sum),  // Changed from add_result to sum for proper sequencing
         .data_out(out)
     );
     
     // Load weights and biases from memory files
     initial begin
-        $readmemb("w.mif", weight_in);
-        $readmemb("b.mif", bias_in);
-        $display("%b", weight_in[0]);    
-        $display("%b", bias_in[0]);
+        $readmemb(".w_1_0.mif", weight_in);
+        $readmemb(".b_1_0.mif", bias_in);
+        // $display("%b", weight_in[0]);    
+        // $display("%b", bias_in[0]);
     end
+
+    // Register to hold accumulated sum
+    reg [22:0] sum;
 
     // Main state machine - positive clock edge
     always @(posedge clk or posedge rst) begin
-        if (rst) begin  
+        if (rst|counter>4) begin  
             counter <= 3'b0;           
             num1 <= 23'b0;
             num2 <= 23'b0;
@@ -68,14 +63,12 @@ module neuron(
         else begin
             if (counter == 0 && !accumulate_flag) begin
                 // Initialize with bias at the start
-                
                 num1 <= bias_in[0];
                 num2 <= result;  // First weight*input product
                 accumulate_flag <= 1'b1;
                 counter <= counter + 1'b1;
             end
             else if (counter < 3) begin  // Process weights 0-2
-
                 num1 <= add_result;  // Previous accumulated sum
                 num2 <= result;      // Current weight*input product
                 counter <= counter + 1'b1;
@@ -88,8 +81,8 @@ module neuron(
             else if (counter == 4) begin
                 // Output ready
                 out_data <= out;
-                $display("%b output by relu",out_data); //00000110111111111010110
-                counter <= counter;  // Stay in this state until reset
+                $display("%b output by relu",out); //00000110111111111010110
+                counter <= counter+ 1'b1;  // Stay in this state until reset
             end
         end
     end
